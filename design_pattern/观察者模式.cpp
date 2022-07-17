@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+#include <list>
+using namespace std;
+
+class Secretary;
+
+class Observer
+{
+public:
+    Observer(Secretary* secretary)
+    {
+        m_secretary = secretary;
+    }
+
+    void update(string action)
+    {
+        cout << "action: " << action << endl;
+    }
+
+private:
+    Secretary* m_secretary;
+};
+
+class Secretary
+{
+public:
+    Secretary()
+    {
+        m_list.clear();
+    }
+
+    void notify(string info)
+    {
+        for (list<Observer*>::iterator it = m_list.begin(); it!=m_list.end(); it++)
+        {
+            (*it)->update(info);
+        }
+    }
+
+    void setObserver(Observer* obs)
+    {
+        m_list.push_back(obs);
+    }
+
+private:
+    list<Observer*> m_list;
+};
+
+int main()
+{
+    Secretary* s = NULL;
+    Observer* o1 = NULL;
+    Observer* o2 = NULL;
+
+    s = new Secretary();
+    o1 = new Observer(s);
+    o2 = new Observer(s);
+
+    s->setObserver(o1);
+    s->setObserver(o2);
+
+    s->notify("boss comes");
+    s->notify("boss leaves");
+
+    delete s;
+    delete o1;
+    delete o2;
+
+    return 0;
+}
