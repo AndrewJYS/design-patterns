@@ -1,13 +1,3 @@
-# 迭代器模式  
-
-迭代器模式用于顺序访问集合对象的元素，不需要知道集合对象的底层表示。  
-
-iterator: 该接口必须定义实现迭代功能的最小定义方法集，比如提供hasNext(),Next()等  
-ConcreteIterator: 迭代器接口Iterator的实现类，可以根据具体情况加以实现  
-Aggregate: 容器类  
-ConcreteAggregate: 容器类的实现类  
-
-```c++
 #include <iostream>
 using namespace std;
 
@@ -116,4 +106,3 @@ int main()
 
     return 0;
 }
-```
